@@ -5,7 +5,7 @@ const inputAge = document.getElementById("age");
 const ticketForm = document.querySelector("form");
 console.log(inputKm, inputAge, ticketForm);
 
-//al submit stampo in console i dati in ingresso
+//al submit stampo in console i dati in ingresso e l'output
 ticketForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
