@@ -21,10 +21,10 @@ ticketForm.addEventListener("submit", function (event) {
 
     //invoco la funzione salvandola in una variabile
     const priceCalc = priceCalculator(userKm, userAge);
-    const finalPrice = priceCalc.toFixed(2);
+    const finalPrice = priceCalc.toFixed(2); 
 
-    //stampo in console il risultato
-    console.log(`km = ${userKm}; età = ${userAge}; prezzo = ${finalPrice}€`);
+        //stampo in console il risultato
+        console.log(`km = ${userKm}; età = ${userAge}; prezzo = ${finalPrice}€`);
 
     //ripulisco il form
     ticketForm.reset();

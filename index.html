@@ -10,19 +10,19 @@
     <!--/css Bootstrap-->
 </head>
 
-<body class="bg-secondary">
+<body class="bg-primary-subtle">
     <main class="container mt-5">
         <!--Ticket request form-->
-        <form class="card p-4">
+        <form class="card border-primary p-4">
             <div class="row g-3">
                 <!--Titolo-->
-                <h1 class="mb-3">Calcola il prezzo del tuo biglietto</h1>
+                <h1 class="mb-3 text-primary-emphasis">Calcola il prezzo del tuo biglietto</h1>
                 <!--/Titolo-->
 
                 <!--Dati input utente-->
                 <!--Nome-->
                 <div class="col-12 col-md-6">
-                    <label for="user-name" class="form-label">Nome</label>
+                    <label for="user-name" class="form-label ">Nome</label>
                     <input type="text" id="user-name" class="form-control" placeholder="Elio">
                 </div>
                 <!--/Nome-->
@@ -100,26 +100,64 @@
             </div>
         </form>
         <!--/Ticket request form-->
+        <div class=""> <!--Displaynone--------------------------------------------------------------->
+            <!--Tickets Card-->
 
-        <!--Tickets Card-->
-        <section class="card mt-5 p-4 mb-5">
+            <section class="card border-success mt-5 p-4 mb-5">
 
-            <div class="row g-3">
-                <div class="col-12 p-2 fs-2 text-end bg-primary rounded-top text-white">Codice Biglietto:
+
+                <h2 class=" text-center text-primary-emphasis mb-3">Riepilogo del biglietto</h2>
+
+                <div class="row g-2">
+                    <!--Intestazione biglietto -->
+                    <div class="col-6 col-md-2">
+                        <img src="./img/high-speed-train-146498.svg" alt="train-logo" class="p-2 rounded bg-success">
+                    </div>
+                    <div class="col-6 col-md-4 d-flex align-items-center">
+                        <h2 class="text-success">TreniTardi</h2>
+                    </div>
+                    <div
+                        class="col-6 col-md-3 p-2 fs-5 d-flex align-items-center text-secondary-emphasis bg-body-secondary">
+                        Intercity n°
+                    </div>
+                    <div
+                        class="col-6 col-md-3 p-2 fs-5 d-flex align-items-center text-secondary-emphasis bg-body-secondary">
+                        Carrozza n°
+                    </div>
+
+                    <!--/Intestazione biglietto -->
+
+                    <!--Riepilogo utente-->
+                    <div class="col-12 col-md-6 bg-body-secondary border-end border-white p-2">
+                        <ul class="text-primary-emphasis row g-3 list-unstyled">
+                            <h4>Riepilogo utente</h4>
+                            <li class="col-6">Passeggero</li>
+                            <li class="col-6">Età</li>
+                            <li class="col-6">Numero di telefono</li>
+                            <li class="col-6">Email</li>
+                        </ul>
+                    </div>
+                    <!--/Riepilogo utente-->
+
+                    <!--Riepilogo tratta-->
+                    <div class=" col-12 col-md-6 bg-primary-subtle p-2">
+                        <ul class="text-primary-emphasis row g-3 list-unstyled">
+                            <h4>Riepilogo tratta</h4>
+                            <li class="col-6">Stazione di partenza</li>
+                            <li class="col-6">Km da percorrere</li>
+                            <li class="col-12">Sconto applicato</li>
+                        </ul>
+                    </div>
+                    <!--/Riepilogo tratta-->
+
+                    <!--Prezzo-->
+                    <hr>
+                    <div class=" col-12 p-2 fs-4 text-danger-emphasis text-end">Costo del biglietto €:
+                    </div>
+                    <!--/Prezzo-->
                 </div>
-                <div class="col-6 fs-4">Intercity numero:</div>
-                <div class="col-6 fs-4">Carrozza numero:</div>
-                <div class="col-6 p-2 ">Partenza da:</div>
-                <div class="col-6 p-2 ">Km tratta:</div>
-                <hr>
-                <div class="col-12 p-2 ">Passeggero:</div>
-                <div class="col-12 col-md-4 p-2 ">Età:</div>
-                <div class="col-12 col-md-4 p-2 ">Email:</div>
-                <div class="col-12 col-md-4 p-2 ">Telefono:</div>
-                <hr>
-                <div class="col-12 p-2 fs-4">Il costo del biglietto da pagare in nero è di €:</div>
-            </div>
-        </section>
+            </section>
+        </div>
         <!--/Tickets Card-->
     </main>
 
