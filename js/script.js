@@ -3,16 +3,40 @@
 const inputKm = document.getElementById("km-number");
 const inputAge = document.getElementById("age");
 const ticketForm = document.querySelector("form");
-console.log(inputKm, inputAge, ticketForm);
+const userNameInput = document.getElementById("user-name");
+const userSurnameInput = document.getElementById("surname");
+const userStationInput = document.getElementById("station");
+const userTelInput = document.getElementById("phone");
+const userEmailInput = document.getElementById("email");
+const userTermsInput = document.getElementById("grid-check");
+console.dir(userTermsInput);
 
-//al submit stampo in console i dati in ingresso e l'output
+//recupero gli elementi dal DOM
+
+const passengerNameElem = document.getElementById("passenger");
+const passengerAgeElem = document.getElementById("passenger-age");
+const passengerTelElem = document.getElementById("passenger-tel");
+const passengerEmailElem = document.getElementById("passenger-mail");
+const passengerStationElem = document.getElementById("passenger-station");
+const passengerKmElem = document.getElementById("passenger-km");
+const passengerDiscountElem = document.getElementById("passenger-discount");
+const ticketPriceElem = document.getElementById("ticket-price");
+console.log(passengerDiscountElem);
+
+
+//al submit stampo in pagina i dati in ingresso 
 ticketForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
     //salvo in variabili il valore dell'input utente
     const userKm = parseFloat(inputKm.value);
     const userAge = inputAge.value;
-    console.log(userKm, userAge);
+    let userName = userNameInput.value.trim();
+    const userSurname = userSurnameInput.value.trim();
+    const userStation = userStationInput.value;
+    const userTel = userTelInput.value;
+    const userEmail = userEmailInput.value.trim();
+    const userTerms = userTermsInput.value;
 
     //faccio un controllo sull' input utente 
     if (userKm <= 0) {
@@ -21,10 +45,20 @@ ticketForm.addEventListener("submit", function (event) {
 
     //invoco la funzione salvandola in una variabile
     const priceCalc = priceCalculator(userKm, userAge);
-    const finalPrice = priceCalc.toFixed(2); 
+    const finalPrice = priceCalc.toFixed(2);
 
-        //stampo in console il risultato
-        console.log(`km = ${userKm}; età = ${userAge}; prezzo = ${finalPrice}€`);
+    //stampo in console il risultato
+    console.log(`km = ${userKm}; età = ${userAge}; prezzo = ${finalPrice}€`);
+
+    //passo gli elementi al DOM 
+    passengerNameElem.innerHTML = `${userSurname} ${userName}`;
+    passengerAgeElem.innerHTML = userAge;
+    passengerTelElem.innerHTML = userTel;
+    passengerEmailElem.innerHTML = userEmail;
+    passengerKmElem.innerHTML = userKm;
+    passengerStationElem.innerHTML = userStation;
+    //passengerDiscountElem.innerHTML += " " 
+    ticketPriceElem.innerHTML += ` ${finalPrice}`;
 
     //ripulisco il form
     ticketForm.reset();

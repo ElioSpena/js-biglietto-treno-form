@@ -39,10 +39,10 @@
                     <label for="station" class="form-label">Stazione di partenza</label>
                     <select id="station" class="form-control">
                         <option value="Bologna">Bologna</option>
-                        <option value="Bologna">Bari</option>
-                        <option value="Bologna">Milano</option>
-                        <option value="Bologna">Napoli</option>
-                        <option value="Bologna">Roma</option>
+                        <option value="Bari">Bari</option>
+                        <option value="Milano">Milano</option>
+                        <option value="Napoli">Napoli</option>
+                        <option value="Roma">Roma</option>
                     </select>
                 </div>
                 <!--/Stazione di partenza-->
@@ -57,7 +57,7 @@
                 <!--Km da percorrere-->
                 <div class="col-12 col-md-6">
                     <label for="km-number" class="form-label">Inserire il numero di Km</label>
-                    <input value="0" id="km-number" type="number" class="form-control">
+                    <input value="100" id="km-number" type="number" class="form-control">
                 </div>
                 <!--/Km da percorrere-->
 
@@ -85,7 +85,7 @@
                     <div class="form-check">
                         <label class="form-check-label" for="gridCheck">Accetto i termini e le istruzioni
                             condizionali</label>
-                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <input class="form-check-input" type="checkbox" id="grid-check">
                     </div>
                 </div>
                 <!--/Termini e condizioni-->
@@ -131,10 +131,14 @@
                     <div class="col-12 col-md-6 bg-body-secondary border-end border-white p-2">
                         <ul class="text-primary-emphasis row g-3 list-unstyled">
                             <h4>Riepilogo utente</h4>
-                            <li class="col-6">Passeggero</li>
-                            <li class="col-6">Età</li>
-                            <li class="col-6">Numero di telefono</li>
-                            <li class="col-6">Email</li>
+                            <li class="col-6">Passeggero:</li>
+                            <li class="col-6" id="passenger"></li>
+                            <li class="col-6">Età:</li>
+                            <li class="col-6" id="passenger-age"></li>
+                            <li class="col-6">Numero di telefono:</li>
+                            <li class="col-6" id="passenger-tel"></li>
+                            <li class="col-6" id=>Email:</li>
+                            <li class="col-6" id="passenger-mail"></li>
                         </ul>
                     </div>
                     <!--/Riepilogo utente-->
@@ -143,16 +147,19 @@
                     <div class=" col-12 col-md-6 bg-primary-subtle p-2">
                         <ul class="text-primary-emphasis row g-3 list-unstyled">
                             <h4>Riepilogo tratta</h4>
-                            <li class="col-6">Stazione di partenza</li>
-                            <li class="col-6">Km da percorrere</li>
-                            <li class="col-12">Sconto applicato</li>
+                            <li class="col-6" id=>Stazione di partenza:</li>
+                            <li class="col-6" id="passenger-station"></li>
+                            <li class="col-6">Km da percorrere:</li>
+                            <li class="col-6" id="passenger-km"></li>
+                            <li class="col-6">Sconto applicato:</li>
+                            <li class="col-6" id="passenger-discount"></li>
                         </ul>
                     </div>
                     <!--/Riepilogo tratta-->
 
                     <!--Prezzo-->
                     <hr>
-                    <div class=" col-12 p-2 fs-4 text-danger-emphasis text-end">Costo del biglietto €:
+                    <div id="ticket-price" class=" col-12 p-2 fs-4 text-danger-emphasis text-end">Costo del biglietto €:
                     </div>
                     <!--/Prezzo-->
                 </div>
