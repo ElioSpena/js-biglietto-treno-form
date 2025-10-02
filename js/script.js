@@ -48,9 +48,10 @@ ticketForm.addEventListener("submit", function (event) {
 
     const priceCalc = priceCalculator(userKm, userAge);
     const finalPrice = priceCalc.toFixed(2);
-    const numberIdTrain = getRandomNumb(6);
-    const numberVagon = getRandomNumb(2);
+    const numberIdTrain = getRandomTrain(6);
+    const numberVagon = getRandomVagon(2);
     const discount = getDiscountType(userAge, passengerDiscountElem);
+    const capitalizePassenger = capitalizeWord(userName, userSurname);
 
     //faccio un controllo sul form 
     const isValid = isFormValid(userKm, inputKm, userName, userNameInput, userSurname, userSurnameInput, userTel, userTelInput, userEmail, userEmailInput, userTerms, userTermsInput);
@@ -60,7 +61,7 @@ ticketForm.addEventListener("submit", function (event) {
 
     //passo gli elementi al DOM
 
-    passengerNameElem.innerHTML = `${userSurname} ${userName}`;
+    passengerNameElem.innerHTML = capitalizePassenger;
     passengerAgeElem.innerHTML = userAge;
     passengerTelElem.innerHTML = userTel;
     passengerEmailElem.innerHTML = userEmail;
@@ -132,20 +133,38 @@ function priceCalculator(km, age) {
  * @returns {string}; numero casuale * cifra in stringa 
  */
 
-function getRandomNumb(cifra) {
-    let randomNumber = "";
-    for (let i = 0; i < cifra; i++) {
-        let curNumber
+function getRandomTrain(cifraTrain) {
+    let randomNumberTrain = "";
+    for (let i = 0; i < cifraTrain; i++) {
+        let curNumberTrain
         if (i === 0) {
-            curNumber = Math.floor(Math.random() * 9) + 1;
+            curNumberTrain = Math.floor(Math.random() * 9) + 1;
         } else {
-            curNumber = Math.floor(Math.random() * 10);
+            curNumberTrain = Math.floor(Math.random() * 10);
         }
-        randomNumber += curNumber;
+
+        randomNumberTrain += curNumberTrain;
     }
 
-    return randomNumber
+    return randomNumberTrain
+
 }
+
+function getRandomVagon(cifraVagon) {
+
+    let numberVagon = Math.floor(Math.random() * 20);
+    let result
+    if (numberVagon < 10) {
+        result = "0" + numberVagon;
+    } else {
+        result = numberVagon;
+    }
+
+    return result
+
+}
+
+
 
 /**creo una funzione per le istruzioni condizionali
  * @param {string}; valore dell'input
@@ -193,7 +212,7 @@ function isFormValid(km, kmWarning, name, warningName, surname, warningSurname, 
         warningTel.classList.remove("border-danger");
     }
 
-    if (email === "") {
+    if (email === "" || !email.includes("@") || !email.includes(".")) {
         warningEmail.classList.add("border");
         warningEmail.classList.add("border-danger");
         isValid = false;
@@ -230,4 +249,14 @@ function getDiscountType(age, ageElem) {
     } else {
         ageElem.innerHTML = "Intero";
     }
+}
+
+/**funzione per lettera maiuscola passeggero
+ * @param {string}; input string
+ * @returns {string}; stringa modificata
+*/
+function capitalizeWord(name, surname) {
+    const capitalizedName = name[0].toUpperCase() + name.substring(1).toLowerCase();
+    const capitalizedSurname = surname[0].toUpperCase() + surname.substring(1).toLowerCase();
+    return capitalizedName + " " + capitalizedSurname;
 }
