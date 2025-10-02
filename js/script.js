@@ -10,7 +10,6 @@ const userEmailInput = document.getElementById("email");
 const userTermsInput = document.getElementById("grid-check");
 
 
-
 //recupero gli elementi dal DOM
 
 const ticketForm = document.querySelector("form");
@@ -25,8 +24,7 @@ const ticketPriceElem = document.getElementById("ticket-price");
 const ticketCard = document.getElementById("ticket-card");
 const intercityElem = document.getElementById("intercity");
 const vagonElem = document.getElementById("vagon");
-
-
+const homeButton = document.getElementById("btn-home");
 
 
 //al submit stampo in pagina i dati in ingresso 
@@ -38,19 +36,13 @@ ticketForm.addEventListener("submit", function (event) {
 
     const userKm = parseFloat(inputKm.value);
     const userAge = inputAge.value;
-    let userName = userNameInput.value.trim();
+    const userName = userNameInput.value.trim();
     const userSurname = userSurnameInput.value.trim();
     const userStation = userStationInput.value;
     const userTel = userTelInput.value;
     const userEmail = userEmailInput.value.trim();
-    const userTerms = userTermsInput.value;
+    const userTerms = userTermsInput.checked;
 
-
-    //faccio un controllo sull' input utente 
-
-    if (userKm <= 0) {
-        alert("Errore: Inserire i Km!");
-    }
 
     //invoco la funzione salvandola in una variabile
 
@@ -58,12 +50,13 @@ ticketForm.addEventListener("submit", function (event) {
     const finalPrice = priceCalc.toFixed(2);
     const numberIdTrain = getRandomNumb(6);
     const numberVagon = getRandomNumb(2);
-    console.log(numberIdTrain, numberVagon, finalPrice);
+    const discount = getDiscountType(userAge, passengerDiscountElem);
 
-
-    //stampo in console il risultato
-
-    console.log(`km = ${userKm}; età = ${userAge}; prezzo = ${finalPrice}€`);
+    //faccio un controllo sul form 
+    const isValid = isFormValid(userKm, inputKm, userName, userNameInput, userSurname, userSurnameInput, userTel, userTelInput, userEmail, userEmailInput, userTerms, userTermsInput);
+    if (!isValid) {
+        return;
+    }
 
     //passo gli elementi al DOM
 
@@ -75,8 +68,11 @@ ticketForm.addEventListener("submit", function (event) {
     passengerStationElem.innerHTML = userStation;
     intercityElem.innerHTML += numberIdTrain;
     vagonElem.innerHTML += numberVagon;
-    //passengerDiscountElem.innerHTML += " " 
     ticketPriceElem.innerHTML = `Il costo del biglietto è: ${finalPrice} €`;
+
+
+    //rimuovo il form 
+    ticketForm.classList.add("d-none");
 
     //mostro a schermo il ticket
     ticketCard.classList.remove("d-none");
@@ -85,6 +81,19 @@ ticketForm.addEventListener("submit", function (event) {
     //ripulisco il form
     ticketForm.reset();
 })
+
+
+
+//al click home nascondo il ticket e mostro il form
+homeButton.addEventListener("click", function () {
+    ticketForm.classList.remove("d-none");
+    ticketCard.classList.add("d-none");
+    intercityElem.innerHTML = "Intercity n° ";
+    vagonElem.innerHTML = "Carrozza n° ";
+})
+
+
+
 
 
 
@@ -138,3 +147,87 @@ function getRandomNumb(cifra) {
     return randomNumber
 }
 
+/**creo una funzione per le istruzioni condizionali
+ * @param {string}; valore dell'input
+ * @param {object}; elemento da modificare
+ * @returns {bool}; se la condizione è true/false
+ */
+
+function isFormValid(km, kmWarning, name, warningName, surname, warningSurname, tel, warningTel, email, warningEmail, terms, warningTerms) {
+    let isValid = true;
+
+    if (km <= 0) {
+        kmWarning.classList.add("border");
+        kmWarning.classList.add("border-danger");
+        isValid = false;
+    } else {
+        kmWarning.classList.remove("border");
+        kmWarning.classList.remove("border-danger");
+    }
+
+    if (name === "") {
+        warningName.classList.add("border");
+        warningName.classList.add("border-danger");
+        isValid = false;
+    } else {
+        warningName.classList.remove("border");
+        warningName.classList.remove("border-danger");
+    }
+
+    if (surname === "") {
+        warningSurname.classList.add("border");
+        warningSurname.classList.add("border-danger");
+        isValid = false;
+    } else {
+        warningSurname.classList.remove("border");
+        warningSurname.classList.remove("border-danger");
+    }
+
+
+    if (tel === "" || tel.length < 10) {
+        warningTel.classList.add("border");
+        warningTel.classList.add("border-danger");
+        isValid = false;
+    } else {
+        warningTel.classList.remove("border");
+        warningTel.classList.remove("border-danger");
+    }
+
+    if (email === "") {
+        warningEmail.classList.add("border");
+        warningEmail.classList.add("border-danger");
+        isValid = false;
+    } else {
+        warningEmail.classList.remove("border");
+        warningEmail.classList.remove("border-danger");
+    }
+
+
+    if (!terms) {
+        warningTerms.classList.add("border");
+        warningTerms.classList.add("border-danger");
+        isValid = false;
+    } else {
+        warningTerms.classList.remove("border");
+        warningTerms.classList.remove("border-danger");
+    }
+
+
+    return isValid
+}
+
+/**funzione per mostrare il tipo di sconto
+ * @param {string}; valore dell'input
+ * @param {object}; elemento da modificare
+ * @returns {object}; elemento modificato 
+ */
+
+function getDiscountType(age, ageElem) {
+    if (age === "Minorenne") {
+        ageElem.innerHTML = "Studenti";
+    } else if (age === "Over65") {
+        ageElem.innerHTML = "GoldenAge";
+    } else {
+        ageElem.innerHTML = "Intero";
+    }
+}
