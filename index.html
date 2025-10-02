@@ -64,7 +64,7 @@
                 <!--Età-->
                 <div class="col-12 col-md-6">
                     <label for="age" class="form-label">Inserire l'età</label>
-                    <select id="age" type="number" class="form-select">
+                    <select id="age" class="form-select">
                         <option value="Maggiorenne">Maggiorenne</option>
                         <option value="Minorenne">Minorenne</option>
                         <option value="Over65">Over65</option>
@@ -83,7 +83,7 @@
                 <!--Termini e condizioni-->
                 <div class="col-12 col-md-6 d-flex align-items-end">
                     <div class="form-check">
-                        <label class="form-check-label" for="gridCheck">Accetto i termini e le istruzioni
+                        <label class="form-check-label" for="grid-check">Accetto i termini e le istruzioni
                             condizionali</label>
                         <input class="form-check-input" type="checkbox" id="grid-check">
                     </div>
@@ -100,9 +100,14 @@
             </div>
         </form>
         <!--/Ticket request form-->
+
+
+
+
+
+
+        <!--Tickets Card-->
         <div id="ticket-card" class="d-none">
-            <!--Displaynone--------------------------------------------------------------->
-            <!--Tickets Card-->
 
             <section class="card border-success mt-5 p-4 mb-5">
 
@@ -130,8 +135,8 @@
 
                     <!--Riepilogo utente-->
                     <div class="col-12 col-md-6 bg-body-secondary border-end border-white p-2">
+                        <h4>Riepilogo utente</h4>
                         <ul class="row g-3 list-unstyled">
-                            <h4>Riepilogo utente</h4>
                             <li class="col-6 fw-bold text-primary-emphasis">Passeggero:</li>
                             <li class="col-6 text-secondary" id="passenger"></li>
                             <li class="col-6 fw-bold text-primary-emphasis">Età:</li>
@@ -146,9 +151,9 @@
 
                     <!--Riepilogo tratta-->
                     <div class=" col-12 col-md-6 bg-primary-subtle p-2">
+                        <h4>Riepilogo tratta</h4>
                         <ul class="row g-3 list-unstyled">
-                            <h4>Riepilogo tratta</h4>
-                            <li class="col-6 fw-bold text-primary-emphasis" id=>Stazione di partenza:</li>
+                            <li class="col-6 fw-bold text-primary-emphasis">Stazione di partenza:</li>
                             <li class="col-6 text-secondary" id="passenger-station"></li>
                             <li class="col-6 fw-bold text-primary-emphasis">Km da percorrere:</li>
                             <li class="col-6 text-secondary" id="passenger-km"></li>
