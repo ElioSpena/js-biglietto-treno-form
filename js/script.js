@@ -51,7 +51,6 @@ ticketForm.addEventListener("submit", function (event) {
     const numberIdTrain = getRandomTrain(6);
     const numberVagon = getRandomVagon(2);
     const discount = getDiscountType(userAge, passengerDiscountElem);
-    const capitalizePassenger = capitalizeWord(userName, userSurname);
 
     //faccio un controllo sul form 
     const isValid = isFormValid(userKm, inputKm, userName, userNameInput, userSurname, userSurnameInput, userTel, userTelInput, userEmail, userEmailInput, userTerms, userTermsInput);
@@ -59,9 +58,14 @@ ticketForm.addEventListener("submit", function (event) {
         return;
     }
 
+
+    //se valido allora:
+    const capName = capitalizeWord(userName);
+    const capSurname = capitalizeWord(userSurname);
+
     //passo gli elementi al DOM
 
-    passengerNameElem.innerHTML = capitalizePassenger;
+    passengerNameElem.innerHTML = capName + capSurname;
     passengerAgeElem.innerHTML = userAge;
     passengerTelElem.innerHTML = userTel;
     passengerEmailElem.innerHTML = userEmail;
@@ -184,7 +188,7 @@ function isFormValid(km, kmWarning, name, warningName, surname, warningSurname, 
         kmWarning.classList.remove("border-danger");
     }
 
-    if (name === "") {
+    if (name === "" || !isNaN(name) || includesNumber(name) === true) {
         warningName.classList.add("border");
         warningName.classList.add("border-danger");
         isValid = false;
@@ -193,7 +197,7 @@ function isFormValid(km, kmWarning, name, warningName, surname, warningSurname, 
         warningName.classList.remove("border-danger");
     }
 
-    if (surname === "") {
+    if (surname === "" || !isNaN(surname) || includesNumber(surname) === true) {
         warningSurname.classList.add("border");
         warningSurname.classList.add("border-danger");
         isValid = false;
@@ -255,8 +259,34 @@ function getDiscountType(age, ageElem) {
  * @param {string}; input string
  * @returns {string}; stringa modificata
 */
-function capitalizeWord(name, surname) {
-    const capitalizedName = name[0].toUpperCase() + name.substring(1).toLowerCase();
-    const capitalizedSurname = surname[0].toUpperCase() + surname.substring(1).toLowerCase();
-    return capitalizedName + " " + capitalizedSurname;
+
+function capitalizeWord(word) {
+    let result = '';
+
+    for (let i = 0; i < word.length; i++) {
+        if (i === 0) {
+            result += word[i].toUpperCase();
+        } else {
+            result += word[i].toLowerCase();
+        }
+    }
+
+    return result + " ";
 }
+
+/**funzione "includes" per i numeri 
+ * @param {string}; stringa da verificare
+ * @returns {bool}; 
+ */
+
+function includesNumber(nameToCheck) {
+    let result = false;
+    for (let i = 0; i < nameToCheck.length; i++) {
+        const curLetter = nameToCheck[i];
+        if (!isNaN(curLetter)) {
+            result = true
+        }
+    }
+    return result;
+}
+
